@@ -83,8 +83,19 @@ public class BillValidatorTest {
 	@Test
 	public void test_creating_validator_with_null_denominations(){
 		denominations = null;
-		// Simulation Exception is expected to be thrown because of null currency;
+		// Simulation Exception is expected to be thrown because of null denominations;
 		assertThrows("denominations is null", SimulationException.class, () -> new BillValidator(currency, denominations));
+	}
+	
+	/**
+	 * Try's to create an instance of validator with a valid currency but invalid denominations.
+	 * Expected that the validator is not constructed and simulation error is thrown describing how denominations is empty.
+	 */
+	@Test
+	public void test_creating_validator_with_empty_denominations(){
+		denominations = null;
+		// Simulation Exception is expected to be thrown because of empty denominations;
+		assertThrows("There must be at least one denomination.", SimulationException.class, () -> new BillValidator(currency, denominations));
 	}
 	
 	

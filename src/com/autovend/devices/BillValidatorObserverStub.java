@@ -1,4 +1,4 @@
-package com.autovend.hardware.test;
+package com.autovend.devices;
 
 import java.util.Currency;
 
@@ -8,7 +8,7 @@ import com.autovend.devices.BillValidator;
 import com.autovend.devices.observers.AbstractDeviceObserver;
 import com.autovend.devices.observers.BillValidatorObserver;
 
-public class BillValidatorObserverDevice implements BillValidatorObserver {
+public class BillValidatorObserverStub implements BillValidatorObserver {
 
 	/**
 	 * Here, we will record the device on which an event occurs.
@@ -21,7 +21,7 @@ public class BillValidatorObserverDevice implements BillValidatorObserver {
 	public String name;
 	
 	
-	public BillValidatorObserverDevice(String name) {
+	public BillValidatorObserverStub(String name) {
 		this.name = name;
 	}
 

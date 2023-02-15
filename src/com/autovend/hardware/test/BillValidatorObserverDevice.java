@@ -2,6 +2,7 @@ package com.autovend.hardware.test;
 
 import java.util.Currency;
 
+import com.autovend.Barcode;
 import com.autovend.devices.AbstractDevice;
 import com.autovend.devices.BillValidator;
 import com.autovend.devices.observers.AbstractDeviceObserver;
@@ -9,19 +10,30 @@ import com.autovend.devices.observers.BillValidatorObserver;
 
 public class BillValidatorObserverDevice implements BillValidatorObserver {
 
-	public BillValidatorObserverDevice() {
-		// TODO Auto-generated constructor stub
+	/**
+	 * Here, we will record the device on which an event occurs.
+	 */
+	public AbstractDevice<? extends AbstractDeviceObserver> device = null;
+
+	/**
+	 * This is the name of this listener.
+	 */
+	public String name;
+	
+	
+	public BillValidatorObserverDevice(String name) {
+		this.name = name;
 	}
 
 	@Override
 	public void reactToEnabledEvent(AbstractDevice<? extends AbstractDeviceObserver> device) {
-		// TODO Auto-generated method stub
+		this.device = device;
 		
 	}
 
 	@Override
 	public void reactToDisabledEvent(AbstractDevice<? extends AbstractDeviceObserver> device) {
-		// TODO Auto-generated method stub
+		this.device = device;
 		
 	}
 

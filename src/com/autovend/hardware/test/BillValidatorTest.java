@@ -2,6 +2,7 @@ package com.autovend.hardware.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.util.Currency;
 
@@ -10,13 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.autovend.devices.BillValidator;
+import com.autovend.devices.SimulationException;
 
 
 public class BillValidatorTest {
 	
-	Currency currency = Currency.getInstance("CAD");
+	Currency currency;
+	int[] denominations;
 	
-	int[] denominations = {5, 10, 20, 50, 100};
 	public BillValidatorObserverDevice listener1, listener2, listener3;
 
 	/**
@@ -24,6 +26,8 @@ public class BillValidatorTest {
 	 */
 	@Before
 	public void setup() {
+		currency = Currency.getInstance("CAD");
+		denominations = new int[]{5, 10, 20, 50, 100};
 		
 		// Create 3 listeners ... so you can see which ones receive events and which
 		// don't.
@@ -46,6 +50,7 @@ public class BillValidatorTest {
 	 */
 	@Test
 	public void test_creating_valid_validator(){
+		
 		BillValidator validator = new BillValidator(currency, denominations);
 		
 		// give validator a listener and enable it.
@@ -58,6 +63,28 @@ public class BillValidatorTest {
 		assertNotEquals(null, validator);
 		// listener1 should have successfully been registered as one of 'validator' listeners.
 		assertEquals(validator, listener1.device);
+	}
+	
+	/**
+	 * Try's to create an instance of validator with an invalid currency but valid denominations.
+	 * Expected that the validator is not constructed and simulation error is thrown describing how currency is null.
+	 */
+	@Test
+	public void test_creating_validator_with_null_currency(){
+		currency = null;
+		// Simulation Exception is expected to be thrown because of null currency;
+		assertThrows("currency is null", SimulationException.class, () -> new BillValidator(currency, denominations));
+	}
+	
+	/**
+	 * Try's to create an instance of validator with a valid currency but invalid denominations.
+	 * Expected that the validator is not constructed and simulation error is thrown describing how denominations is null.
+	 */
+	@Test
+	public void test_creating_validator_with_null_denominations(){
+		denominations = null;
+		// Simulation Exception is expected to be thrown because of null currency;
+		assertThrows("denominations is null", SimulationException.class, () -> new BillValidator(currency, denominations));
 	}
 	
 	

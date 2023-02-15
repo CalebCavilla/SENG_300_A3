@@ -93,9 +93,20 @@ public class BillValidatorTest {
 	 */
 	@Test
 	public void test_creating_validator_with_empty_denominations(){
-		denominations = null;
+		denominations = new int[]{};
 		// Simulation Exception is expected to be thrown because of empty denominations;
 		assertThrows("There must be at least one denomination.", SimulationException.class, () -> new BillValidator(currency, denominations));
+	}
+	
+	/**
+	 * Try's to create an instance of validator with a valid currency but invalid denominations.
+	 * Expected that the validator is not constructed and simulation error is thrown describing how denominations cannot be negative.
+	 */
+	@Test
+	public void test_creating_validator_with_negative_denominations(){
+		denominations = new int[]{5, -10, 20, 50, 100};
+		// Simulation Exception is expected to be thrown because of negative denominations;
+		assertThrows("Non-positive denomination detected", SimulationException.class, () -> new BillValidator(currency, denominations));
 	}
 	
 	

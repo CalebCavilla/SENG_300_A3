@@ -15,10 +15,12 @@ public class BillValidatorObserverStub implements BillValidatorObserver {
 	 */
 	public AbstractDevice<? extends AbstractDeviceObserver> device = null;
 
-	/**
-	 * This is the name of this listener.
-	 */
+	// This is the name of this listener.
 	public String name;
+	// This is the currency of the bill the bill validator device checks
+	public Currency currency;
+	// This is the value of the bill the bill validator device checks
+	public int value;
 	
 	
 	public BillValidatorObserverStub(String name) {
@@ -39,13 +41,17 @@ public class BillValidatorObserverStub implements BillValidatorObserver {
 
 	@Override
 	public void reactToValidBillDetectedEvent(BillValidator validator, Currency currency, int value) {
-		// TODO Auto-generated method stub
+		this.device = validator;
+		this.currency = currency;
+		this.value = value;
+		System.out.println("Valid " + currency + " bill detected worth: " + value + " dollars");
 		
 	}
 
 	@Override
 	public void reactToInvalidBillDetectedEvent(BillValidator validator) {
-		// TODO Auto-generated method stub
+		this.device = validator;
+		System.out.println("Invalid bill detected");
 		
 	}
 

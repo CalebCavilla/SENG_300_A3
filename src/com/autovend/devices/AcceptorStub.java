@@ -4,23 +4,29 @@ import com.autovend.Bill;
 
 
 /**
- * A simple bill acceptor that will always accept bill and always has space.
+ * A simple bill acceptor that will accept a bill if it has space, otherwise it will reject .
  */
 
 public class AcceptorStub implements Acceptor<Bill> {
 
-	public AcceptorStub() {
-		// TODO Auto-generated constructor stub
+	boolean full;
+	
+	public AcceptorStub(boolean full) {
+		this.full = full;
 	}
 
 	@Override
 	public boolean accept(Bill bill) throws OverloadException, DisabledException {
-		return true;
-	}
+		return hasSpace();
+	}          
 
 	@Override
 	public boolean hasSpace() {
-		return true;
+		if (this.full) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 
 }

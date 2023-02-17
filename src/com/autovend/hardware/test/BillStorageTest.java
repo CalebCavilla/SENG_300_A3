@@ -72,7 +72,7 @@ public class BillStorageTest {
 		assertNotEquals(null, storage);
 		// listener1 should have successfully been registered as one of 'validator' listeners.
 		assertEquals(storage, listener1.device);
-		
+		 
 	}
 	@Test (expected = SimulationException.class)
 	public void test_not_creating_storage_with_negative_capacity() {
@@ -137,8 +137,15 @@ public class BillStorageTest {
 		// give validator a listener and enable it.
 		storage.register(listener1);
 		storage.disable();
-		storage.
-		storage.accept(bill);
+		try {
+			storage.accept(bill);
+		} catch (DisabledException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (OverloadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//Test if bill == null

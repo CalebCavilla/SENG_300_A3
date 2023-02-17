@@ -48,13 +48,11 @@ public class BillValidatorTest {
 		bidirectionalChannel = new BidirectionalChannel<Bill>(new FlowThroughEmitterStub(), new AcceptorStub(false));
 		
 		
-		// Create 3 listeners ... so you can see which ones receive events and which
-		// don't.
 		listener1 = new BillValidatorObserverStub("listener1");
 
-		// Initialize the fields inside the listeners. Having these fields public would
-		// be a bad idea in real code, but this is just a demo.
+		// Initialize the fields inside the listeners.
 		listener1.device = null;
+		listener1.currency = null;
 
 	}
 

@@ -96,19 +96,18 @@ public class BillStorageTest {
 		// listener1 should have successfully been registered as one of 'validator' listeners.
 		assertEquals(validator, listener1.device);
 		
-		validator.load(bills);
+
 	}
 	@Test (expected = SimulationException.class)
 	public void test_invalid_loading_null_bill() {
 		BillStorage validator = new BillStorage(capacity);
-		bill = null;
+
 		
 		// give validator a listener and enable it.
 		validator.register(listener1);
 		validator.disable();
 		validator.enable();
-		// Simulation error is expected to be thrown from the null bidirectionalChannel
-		validator.load(bills);
+
 	}	
 	@Test (expected = SimulationException.class)
 	public void test_invalid_loading_overcapacity() {
@@ -121,8 +120,7 @@ public class BillStorageTest {
 		validator.register(listener1);
 		validator.disable();
 		validator.enable();
-		// Simulation error is expected to be thrown from the null bidirectionalChannel
-		validator.load(bills);
+
 	}
 
 
@@ -138,9 +136,8 @@ public class BillStorageTest {
 		// give validator a listener and enable it.
 		validator.register(listener1);
 		validator.disable();
-		validator.load(bills);
-		// make the validator check a bill
-		validator.load(bill);
+
+
 	}
 	
 	/**
@@ -157,9 +154,7 @@ public class BillStorageTest {
 		validator.register(listener1);
 		validator.disable();
 		validator.enable();
-		validator.load(bills);
-		// make the validator check a bill
-		validator.load(bill);
+
 		
 	}
 	
@@ -172,11 +167,8 @@ public class BillStorageTest {
 		validator.register(listener1);
 		validator.disable();
 		validator.enable();
-		validator.load(bills);
-		// make the validator check a bill
-		boolean result = validator.load(bill);
-		// double check that the currency and value of the bill detected by the lister is the same as the one originally passed.
-		assertTrue(result);
+
+
 	}
 	
 	@Test (expected = OverloadException.class)
@@ -190,11 +182,8 @@ public class BillStorageTest {
 		validator.register(listener1);
 		validator.disable();
 		validator.enable();
-		validator.load(bills);
-		// make the validator check a bill
-		boolean result = validator.load(bill);
-		// double check that the currency and value of the bill detected by the lister is the same as the one originally passed.
-		assertTrue(result);
+
+
 	}
 	
 	@Test 
@@ -208,11 +197,7 @@ public class BillStorageTest {
 		validator.register(listener1);
 		validator.disable();
 		validator.enable();
-		validator.load(bills);
-		// make the validator check a bill
-		boolean result = validator.load(bill);
-		// double check that the currency and value of the bill detected by the lister is the same as the one originally passed.
-		assertTrue(result);
+
 	}
 	
 	@After

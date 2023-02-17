@@ -7,6 +7,10 @@ public class ReceiptPrinterObserverStub implements ReceiptPrinterObserver {
 
 	public AbstractDevice<? extends AbstractDeviceObserver> device = null;
 	String name;
+	public boolean inkAdded;
+	public boolean paperAdded;
+	public boolean outOfInk;
+	public boolean outOfPaper;
 	
 	
 	public ReceiptPrinterObserverStub(String name) {
@@ -27,25 +31,29 @@ public class ReceiptPrinterObserverStub implements ReceiptPrinterObserver {
 
 	@Override
 	public void reactToOutOfPaperEvent(ReceiptPrinter printer) {
-		// TODO Auto-generated method stub
+		outOfPaper = true;
+		System.out.println("Out of Paper!");
 		
 	}
 
 	@Override
 	public void reactToOutOfInkEvent(ReceiptPrinter printer) {
-		// TODO Auto-generated method stub
+		outOfInk = true;
+		System.out.println("Out of Ink!");
 		
 	}
 
 	@Override
 	public void reactToPaperAddedEvent(ReceiptPrinter printer) {
-		// TODO Auto-generated method stub
+		paperAdded = true;
+		System.out.println("Paper added!");
 		
 	}
 
 	@Override
 	public void reactToInkAddedEvent(ReceiptPrinter printer) {
-		// TODO Auto-generated method stub
+		inkAdded = true;
+		System.out.println("Ink added!");
 		
 	}
 

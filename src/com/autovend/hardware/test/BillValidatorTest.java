@@ -346,8 +346,6 @@ public class BillValidatorTest {
 	@After
 	public void teardown() {
 		listener1 = null;
-		listener2 = null;
-		listener3 = null;
 	}
 
 }

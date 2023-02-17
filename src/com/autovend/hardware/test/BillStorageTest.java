@@ -38,7 +38,7 @@ public class BillStorageTest {
 	/**
 	 * Sets up the test suite. This is run before every test method.
 	 */
-	@Before
+	@Before 
 	public void setup() {
 		storage = new Bill[] {};
 		

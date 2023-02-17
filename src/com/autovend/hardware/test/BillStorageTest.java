@@ -59,22 +59,22 @@ public class BillStorageTest {
 	 * Expected that the validator is constructed without issue. 
 	 */
 	@Test
-	public void test_creating_valid_validator(){
+	public void test_creating_valid_storage(){
 		
-		BillStorage validator = new BillStorage(capacity);
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+		BillStorage storage = new BillStorage(capacity);
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 		
-		assertNotEquals(null, validator);
+		assertNotEquals(null, storage);
 		// listener1 should have successfully been registered as one of 'validator' listeners.
-		assertEquals(validator, listener1.device);
+		assertEquals(storage, listener1.device);
 		
 	}
 	@Test (expected = SimulationException.class)
-	public void test_creating_validator_with_negative_capacity() {
+	public void test_not_creating_storage_with_negative_capacity() {
 		int capacity = -1;
-		BillStorage validator = new BillStorage(capacity);
+		BillStorage storage = new BillStorage(capacity);
 	}
 	
 	/**
@@ -83,43 +83,43 @@ public class BillStorageTest {
 	 */
 	
 	@Test 
-	public void test_valid_loading() {
-		BillStorage validator = new BillStorage(capacity);
+	public void test_storage_loading() {
+		BillStorage storage = new BillStorage(capacity);
 		
-		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+		// give storage a listener and enable it.
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 		
 		// validator should have been constructed with no issues
-		assertNotEquals(null, validator);
+		assertNotEquals(null, storage);
 		// listener1 should have successfully been registered as one of 'validator' listeners.
-		assertEquals(validator, listener1.device);
+		assertEquals(storage, listener1.device);
 		
 
 	}
 	@Test (expected = SimulationException.class)
-	public void test_invalid_loading_null_bill() {
-		BillStorage validator = new BillStorage(capacity);
+	public void test_storage_loading_null_bill() {
+		BillStorage storage = new BillStorage(capacity);
 
 		
-		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+		// give storage a listener and enable it.
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 
 	}	
 	@Test (expected = SimulationException.class)
-	public void test_invalid_loading_overcapacity() {
+	public void test_storage_loading_overcapacity() {
 		
-		BillStorage validator = new BillStorage(capacity);
+		BillStorage storage = new BillStorage(capacity);
 		int capacity = 9;
 		int nextIndex = 10;
 		
-		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+		// give storage a listener and enable it.
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 
 	}
 
@@ -129,13 +129,13 @@ public class BillStorageTest {
 	 * Expected that a DisabledException is thrown
 	 */
 	@Test (expected = DisabledException.class)
-	public void test_valid_Bill_while_disabled(){
+	public void test_storage_Bill_while_disabled(){
 		
-		BillStorage validator = new BillStorage(capacity); 
+		BillStorage storage = new BillStorage(capacity); 
 		
 		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
+		storage.register(listener1);
+		storage.disable();
 
 
 	}
@@ -145,58 +145,58 @@ public class BillStorageTest {
 	 * Expected that a SimulationException is thrown
 	 */
 	@Test (expected = SimulationException.class)
-	public void test_invalid_bill_null(){
+	public void test_storage_bill_null(){
 		
-		BillStorage validator = new BillStorage(capacity);
+		BillStorage storage = new BillStorage(capacity);
 		Bill bill = null;
 		
-		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+		// give storage a listener and enable it.
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 
 		
 	}
 	
 	@Test 
-	public void test_MaxStorage_equal_nextInt(){
+	public void test_Storage_length_equal_nextInt(){
 		
-		BillStorage validator = new BillStorage(capacity);
+		BillStorage storage = new BillStorage(capacity);
 		
-		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+		// give storage a listener and enable it.
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 
 
 	}
 	
 	@Test (expected = OverloadException.class)
-	public void test__MaxStorage_not_equal_nextInt(){
+	public void test_Storage_not_equal_nextInt(){
 		
-		BillStorage validator = new BillStorage(capacity);
+		BillStorage storage = new BillStorage(capacity);
 		
 		
 		
-		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+		// give storage a listener and enable it.
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 
 
 	}
 	
 	@Test 
-	public void test__index_not_greater_than_storage_length(){
+	public void test_storage_length_greater_than_nextInt(){
 		
-		BillStorage validator = new BillStorage(capacity);
+		BillStorage storage = new BillStorage(capacity);
 		
 		int nextIndex = 1;
-		storage = new Bill[] {};
-		// give validator a listener and enable it.
-		validator.register(listener1);
-		validator.disable();
-		validator.enable();
+
+		// give storage a listener and enable it.
+		storage.register(listener1);
+		storage.disable();
+		storage.enable();
 
 	}
 	

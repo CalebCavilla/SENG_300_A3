@@ -42,8 +42,8 @@ public class BillStorageTest {
 	public void setup() {
 		storage = new Bill[] {};
 		// set default 'valid' instances for the channels
-		unidirectionalChannel = new UnidirectionalChannelStub<Bill>(new AcceptorStub());
-		bidirectionalChannel = new BidirectionalChannel<Bill>(new FlowThroughEmitterStub(), new AcceptorStub());
+		unidirectionalChannel = new UnidirectionalChannelStub<Bill>(new AcceptorStub(false));
+		bidirectionalChannel = new BidirectionalChannel<Bill>(new FlowThroughEmitterStub(), new AcceptorStub(false));
 		
 		// Create 3 listeners ... so you can see which ones receive events and which
 		// don't.
@@ -140,7 +140,7 @@ public class BillStorageTest {
 		validator.disable();
 		validator.load(bills);
 		// make the validator check a bill
-		validator.accept(bill);
+		validator.load(bill);
 	}
 	
 	/**
@@ -159,7 +159,7 @@ public class BillStorageTest {
 		validator.enable();
 		validator.load(bills);
 		// make the validator check a bill
-		validator.accept(bill);
+		validator.load(bill);
 		
 	}
 	
@@ -174,7 +174,7 @@ public class BillStorageTest {
 		validator.enable();
 		validator.load(bills);
 		// make the validator check a bill
-		boolean result = validator.accept(bill);
+		boolean result = validator.load(bill);
 		// double check that the currency and value of the bill detected by the lister is the same as the one originally passed.
 		assertTrue(result);
 	}
@@ -192,7 +192,7 @@ public class BillStorageTest {
 		validator.enable();
 		validator.load(bills);
 		// make the validator check a bill
-		boolean result = validator.accept(bill);
+		boolean result = validator.load(bill);
 		// double check that the currency and value of the bill detected by the lister is the same as the one originally passed.
 		assertTrue(result);
 	}
@@ -210,7 +210,7 @@ public class BillStorageTest {
 		validator.enable();
 		validator.load(bills);
 		// make the validator check a bill
-		boolean result = validator.accept(bill);
+		boolean result = validator.load(bill);
 		// double check that the currency and value of the bill detected by the lister is the same as the one originally passed.
 		assertTrue(result);
 	}

@@ -33,7 +33,7 @@ public class BillStorageTest {
 	
 	public BillStorageObserverStub listener1, listener2, listener3;
 	private int capacity = 10; 
-	private int bill = 3;
+	int[] bills;
 	
 	/**
 	 * Sets up the test suite. This is run before every test method.
@@ -41,6 +41,9 @@ public class BillStorageTest {
 	@Before
 	public void setup() {
 		storage = new Bill[] {};
+		
+		bills = new int[] {};
+		
 		// set default 'valid' instances for the channels
 		unidirectionalChannel = new UnidirectionalChannelStub<Bill>(new AcceptorStub(false));
 		bidirectionalChannel = new BidirectionalChannel<Bill>(new FlowThroughEmitterStub(), new AcceptorStub(false));
@@ -129,11 +132,13 @@ public class BillStorageTest {
 	public void test_storage_Bill_while_disabled(){
 		
 		BillStorage storage = new BillStorage(capacity); 
+		Bill bill = new Bill(5, Currency.getInstance("CAD"));
 		
 		// give validator a listener and enable it.
 		storage.register(listener1);
 		storage.disable();
-
+		storage.
+		storage.accept(bill);
 	}
 	
 	//Test if bill == null

@@ -73,7 +73,7 @@ public class BillStorageTest {
 	}
 	@Test (expected = SimulationException.class)
 	public void test_not_creating_storage_with_negative_capacity() {
-		int capacity = -1;
+		capacity = (-1);
 		BillStorage storage = new BillStorage(capacity);
 	}
 	
@@ -81,7 +81,6 @@ public class BillStorageTest {
 	 * Runs load()
 	 * 
 	 */
-	
 	@Test 
 	public void test_storage_loading() {
 		BillStorage storage = new BillStorage(capacity);
@@ -98,17 +97,18 @@ public class BillStorageTest {
 		
 
 	}
+	//Test if bills == null
 	@Test (expected = SimulationException.class)
-	public void test_storage_loading_null_bill() {
+	public void test_storage_loading_null_bills() {
 		BillStorage storage = new BillStorage(capacity);
-
-		
+		bills = null;
 		// give storage a listener and enable it.
 		storage.register(listener1);
 		storage.disable();
 		storage.enable();
 
 	}	
+	//Test if (bills.length + nextIndex > storage.length)
 	@Test (expected = SimulationException.class)
 	public void test_storage_loading_overcapacity() {
 		
@@ -124,10 +124,7 @@ public class BillStorageTest {
 	}
 
 
-	/**
-	 * Runs the accept method with a valid Canadian 5$ bill with space in the acceptor but the validator is left disabled
-	 * Expected that a DisabledException is thrown
-	 */
+	// disabled
 	@Test (expected = DisabledException.class)
 	public void test_storage_Bill_while_disabled(){
 		
@@ -137,13 +134,9 @@ public class BillStorageTest {
 		storage.register(listener1);
 		storage.disable();
 
-
 	}
 	
-	/**
-	 * Runs the accept method with an invalid null bill
-	 * Expected that a SimulationException is thrown
-	 */
+	//Test if bill == null
 	@Test (expected = SimulationException.class)
 	public void test_storage_bill_null(){
 		
@@ -157,7 +150,7 @@ public class BillStorageTest {
 
 		
 	}
-	
+	//Test if storage.length() == nextInt()
 	@Test 
 	public void test_Storage_length_equal_nextInt(){
 		
@@ -170,12 +163,11 @@ public class BillStorageTest {
 
 
 	}
-	
+	//Test if storage.length() != nextInt()
 	@Test (expected = OverloadException.class)
 	public void test_Storage_not_equal_nextInt(){
 		
 		BillStorage storage = new BillStorage(capacity);
-		
 		
 		
 		// give storage a listener and enable it.
@@ -185,7 +177,7 @@ public class BillStorageTest {
 
 
 	}
-	
+	//Test if storage.length() > nextInt()
 	@Test 
 	public void test_storage_length_greater_than_nextInt(){
 		
